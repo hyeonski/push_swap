@@ -10,7 +10,7 @@ int	init(t_list **stack_a, t_list **stack_b, char **argv)
 	*stack_b = NULL;
 	while (*argv)
 	{
-		if (!(is_str_digit(*argv) && is_str_int_range(*argv)))
+		if (!(is_str_digit(*argv) && !is_str_int_range(*argv)))
 			return (0);
 		val = alloc_int(ft_atoi(*argv));
 		if (val == NULL)
