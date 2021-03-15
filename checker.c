@@ -54,19 +54,19 @@ void	check_sorted(t_list *stack_a, t_list *stack_b)
 {
 	if (stack_b != NULL)
 	{
-		write(1, "KO\n", 3);
+		write(STDOUT_FILENO, "KO\n", 3);
 		return ;
 	}
 	while (stack_a->next)
 	{
 		if (!(cmp_element(stack_a->content, stack_a->next->content) < 0))
 		{
-			write(1, "KO\n", 3);
+			write(STDOUT_FILENO, "KO\n", 3);
 			return ;
 		}
 		stack_a = stack_a->next;
 	}
-	write(1, "OK\n", 3);
+	write(STDOUT_FILENO, "OK\n", 3);
 }
 
 int	main(int argc, char **argv)
@@ -79,14 +79,14 @@ int	main(int argc, char **argv)
 		return (0);
 	if (init(&stack_a, &stack_b, argv) == 0)
 	{
-		write(STDOUT_FILENO, "Error\n", 6);
+		write(STDERR_FILENO, "Error\n", 6);
 		return (0);
 	}
 	while (get_next_line(STDIN_FILENO, &op))
 	{
 		if (do_operation(&stack_a, &stack_b, op) == 0)
 		{
-			write(STDOUT_FILENO, "Error\n", 6);
+			write(STDERR_FILENO, "Error\n", 6);
 			return (0);
 		}
 		free(op);
