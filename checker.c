@@ -2,19 +2,41 @@
 #include "get_next_line.h"
 #include "utils.h"
 
+int	check_duplicate(int val, t_list *stack_a)
+{
+	int	*temp;
+	
+	if (stack_a == NULL)
+		return (1);
+	while (stack_a)
+	{
+		temp = stack_a->content;
+		if (*temp == val)
+			return (0);
+		stack_a = stack_a->next;
+	}
+	return (1);
+}
+
 int	init(t_list **stack_a, t_list **stack_b, char **argv)
 {
 	int	*val;
 
 	*stack_a = NULL;
 	*stack_b = NULL;
+	argv++;
 	while (*argv)
 	{
-		if (!(is_str_digit(*argv) && !is_str_int_range(*argv)))
+		if (!(is_str_digit(*argv) && is_str_int_range(*argv)))
 			return (0);
 		val = alloc_int(ft_atoi(*argv));
 		if (val == NULL)
 			return (0);
+		if (check_duplicate(*val, *stack_a) == 0)
+		{
+			free(val);
+			return (0);
+		}
 		ft_lstadd_back(stack_a, ft_lstnew(val));
 		argv++;
 	}
@@ -80,6 +102,7 @@ int	main(int argc, char **argv)
 	if (init(&stack_a, &stack_b, argv) == 0)
 	{
 		write(STDERR_FILENO, "Error\n", 6);
+		ft_lstclear(&stack_a, free);
 		return (0);
 	}
 	while (get_next_line(STDIN_FILENO, &op))

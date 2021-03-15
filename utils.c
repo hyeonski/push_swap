@@ -16,16 +16,6 @@ int	ft_isdigit(int c)
 	return ('0' <= c && c <= '9');
 }
 
-int	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
 int	ft_strcmp(char *s1, char *s2)
 {
 	size_t	i;

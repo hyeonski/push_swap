@@ -26,4 +26,8 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 
+int	is_str_digit(char *str);
+int	is_str_int_range(char *str);
+int	cmp_element(int *a, int *b);
+
 #endif
