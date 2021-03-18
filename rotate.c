@@ -24,6 +24,7 @@ void	rotate_a(t_list **stack_a)
 	(*stack_a) = (*stack_a)->next;
 	temp->next = NULL;
 	ft_lstadd_back(stack_a, temp);
+	(*stack_a)->prev = NULL;
 }
 
 // void	rotate_b(t_list **stack_b)
@@ -50,6 +51,7 @@ void	rotate_b(t_list **stack_b)
 	(*stack_b) = (*stack_b)->next;
 	temp->next = NULL;
 	ft_lstadd_back(stack_b, temp);
+	(*stack_b)->prev = NULL;
 }
 
 // void	rev_rotate_a(t_list **stack_a)
@@ -81,6 +83,8 @@ void	rev_rotate_a(t_list **stack_a)
 		prev_last = prev_last->next;
 	prev_last->next = NULL;
 	ft_lstadd_front(stack_a, begin);
+	begin->prev = NULL;
+
 }
 
 // void	rev_rotate_b(t_list **stack_b)
@@ -112,6 +116,7 @@ void	rev_rotate_b(t_list **stack_b)
 		prev_last = prev_last->next;
 	prev_last->next = NULL;
 	ft_lstadd_front(stack_b, begin);
+	begin->prev = NULL;
 }
 
 void	rotate_both(t_list **stack_a, t_list **stack_b)

@@ -23,8 +23,10 @@ void	push_a(t_list **stack_a, t_list **stack_b)
 		return ;
 	begin = (*stack_b)->next;
 	(*stack_b)->next = NULL;
+	(*stack_b)->prev = NULL;
 	ft_lstadd_front(stack_a, (*stack_b));
 	*stack_b = begin;
+	(*stack_b)->prev = NULL;
 }
 
 // void	push_b(t_list **stack_a, t_list **stack_b)
@@ -50,6 +52,8 @@ void	push_b(t_list **stack_a, t_list **stack_b)
 		return ;
 	begin = (*stack_a)->next;
 	(*stack_a)->next = NULL;
+	(*stack_a)->prev = NULL;
 	ft_lstadd_front(stack_b, (*stack_a));
 	*stack_a = begin;
+	(*stack_a)->prev = NULL;
 }
